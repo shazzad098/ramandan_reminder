@@ -1,0 +1,360 @@
+@import "tailwindcss";
+
+body {
+  overflow-x: hidden;
+  background-color: #0d1117; /* A deep, dark background for a night sky feel */
+  color: #ffffff; /* Default text color set to white for contrast */
+}
+
+.container {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+}
+
+/*
+  Decorative Elements
+  ---------------------
+  These are non-functional elements that create the visual ambiance
+  of the starry night theme.
+*/
+.moon-background {
+  position: fixed;
+  top: -50px;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #f1c40f 0%, #f39c12 100%);
+  border-radius: 50%;
+  opacity: 0.1;
+  z-index: 0;
+  filter: blur(20px); /* Add a slight blur for a more ethereal glow */
+  animation: float 6s ease-in-out infinite;
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, #eee, transparent),
+    radial-gradient(2px 2px at 40% 70%, #fff, transparent),
+    radial-gradient(1px 1px at 90% 40%, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  z-index: 0;
+  animation: twinkle 4s linear infinite;
+}
+
+/*
+  Component-Specific Styles
+  ---------------------------
+  These styles are for the individual components like the progress bar
+  and the "Dua" section.
+*/
+/* Progress Bar Container */
+.progress-bar-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+  height: 30px; /* Adjust height as needed */
+  background-color: #e0e0e0;
+  border-radius: 9999px; /* Use a large value for a pill shape */
+  overflow: hidden; /* This hides any overflow from the fill div */
+}
+
+/* Progress Bar Fill */
+.progress-fill {
+  height: 100%;
+  background-color: #f1c40f; /* Use your desired fill color */
+  transition: width 0.5s ease-in-out;
+}
+
+/* Progress Bar Label (Text) */
+.progress-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex; /* Use flexbox for easy centering */
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+  color: #000000; /* Ensure text is visible over the fill */
+  font-weight: bold;
+  z-index: 1; /* Make sure the text is on top of the fill */
+}
+
+.dua-section {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 5px solid #f39c12; /* A subtle accent color for the left border */
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  max-width: 800px;
+  text-align: left;
+}
+
+.dua-text {
+  font-style: italic;
+  line-height: 1.6;
+  color: #ffffff !important; /* Ensuring the text remains visible */
+}
+
+/*
+  Keyframe Animations
+  ---------------------
+  These define the custom animations used for decorative elements.
+*/
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/*
+  Responsive Design
+  -------------------
+  Adjustments for smaller screen sizes to ensure a great user experience
+  on mobile devices.
+*/
+@media (max-width: 768px) {
+  .moon-background {
+    width: 200px;
+    height: 200px;
+    filter: blur(15px);
+  }
+  .container {
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* New Animations for Islamic Elements */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-2deg); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes bounce-slower {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 10s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s ease-in-out infinite;
+}
+
+.animate-bounce-slower {
+  animation: bounce-slower 6s ease-in-out infinite;
+}
+
+/* Prayer Times Floating Panel Styles */
+.prayer-times-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(251, 191, 36, 0.5) transparent;
+}
+
+.prayer-times-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.prayer-times-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.prayer-times-panel::-webkit-scrollbar-thumb {
+  background-color: rgba(251, 191, 36, 0.5);
+  border-radius: 2px;
+}
+
+.prayer-times-panel::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(251, 191, 36, 0.7);
+}
+
+/* Mobile responsiveness for prayer times */
+@media (max-width: 768px) {
+  .prayer-times-panel {
+    right: 2px !important;
+    width: 95vw !important;
+    max-width: 300px !important;
+  }
+  
+  .prayer-times-panel.expanded {
+    transform: translateX(0) !important;
+  }
+}
+
+/* Smooth transitions for prayer times */
+.prayer-times-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.prayer-times-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.prayer-times-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.prayer-times-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Ultra Minimalist Shooting Star */
+/* Fixed Shooting Star Animation */
+@keyframes shootMinimal {
+  0% {
+    transform: translate(0, 0) scale(0.3);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(100vw, 100vh) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* Alternative: Simple diagonal animation */
+@keyframes shootDiagonal {
+  0% {
+    transform: translateX(0) translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(100px) translateY(100px) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* Even simpler: Straight line animation */
+@keyframes shootStraight {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(200px) translateY(150px);
+    opacity: 0;
+  }
+}
+
+/* Very subtle static stars */
+/* Faster Shooting Star Animation */
+@keyframes shootMinimal {
+  0% {
+    transform: translate(0, 0) scale(0.3);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(120px, 80px) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* Alternative faster animation */
+@keyframes shootFast {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(150px) translateY(100px);
+    opacity: 0;
+  }
+}
+
+/* Even faster straight animation */
+@keyframes shootQuick {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(180px, 120px);
+    opacity: 0;
+  }
+}
+
+/* Faster pulse for static stars */
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.2; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.5; 
+    transform: scale(1.1); 
+  }
+}
